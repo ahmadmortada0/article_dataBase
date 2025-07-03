@@ -25,8 +25,37 @@ class ArticleController{
     }
 }
     public function deleteAllArticles(){
+        global $mysqli;
         try{
+        if (!isset($_GET["$id"])){
+            $article=Article::deleteAllArticles($mysqli);
+            echo "all articles deleted";
+            return;
+        }
+        $id=$_GET["id"];
+        $article=Article::delete($mysqli,$id);
+        echo "the article deleted";
+        return;
+        }catch(Exception $e){
+            echo "caught exception :",$e->getMessage();
+        }
+    }
+
+
+    public function updateArticle(){
+        global $mysqli;
+        try{
+        $id=$_POST["id"];
+        $data=json_decode(file_get_contents("php://input"),true);
+        $article=new Article([
+            "name" => $data["name"],
+            "author" =>$data["author"],
+            "description" =>$data["decription"]
+        ]);
+            $article->updateArticle($mysqli,$data,$id);
         
+        echo "the article updated";
+        return;
         }catch(Exception $e){
             echo "caught exception :",$e->getMessage();
         }

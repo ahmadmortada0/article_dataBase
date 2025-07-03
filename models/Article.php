@@ -48,5 +48,17 @@ class Article extends Model{
     public function toArray(){
         return [$this->id, $this->name, $this->author, $this->description];
     }
+      public  function update(mysqli $mysqli,int $id,array $values){
+        // $column=array_map(fn($col)=>"`$columns`",$columns);
+        // $speratedcolumn=implode(",",$column);
+        // $placeHolders=implode(",",array_fill(0,count($values),"?"));
+        $sql ="UPDATE  articles set name = ? , author = ?, description = ?, where id=?";
+        $query=$mysqli->prepare($sql);
+        $query->bind_Param("sssi",$values,$primary_key);
+        $query->excute();
+        $data = $query->get_result();
+        return $data;
+    }
+
     
 }
