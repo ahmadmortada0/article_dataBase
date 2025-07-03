@@ -1,5 +1,5 @@
 <?php 
-
+require(__DIR__ ."./routes/api.php");
 // This block is used to extract the route name from the URL
 //----------------------------------------------------------
 // Define your base directory 
@@ -27,15 +27,15 @@ if ($request == '') {
 //Routing starts here (Mapping between the request and the controller & method names)
 //It's an key-value array where the value is an key-value array
 //----------------------------------------------------------
-$apis = [
-    '/articles'         => ['controller' => 'ArticleController', 'method' => 'getAllArticles'],
-    '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteAllArticles'],
+// $apis = [
+//     '/articles'         => ['controller' => 'ArticleController', 'method' => 'getAllArticles'],
+//     '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteAllArticles'],
 
-    '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
-    '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
+//     '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
+//     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
 
-];
-
+// ];
+ $apis;
 //----------------------------------------------------------
 
 

@@ -1,13 +1,12 @@
 <?php 
-
+require(__DIR__."BaseController.php");
 require(__DIR__ . "/../models/Article.php");
-require(__DIR__ . "/../connection/connection.php");
 require(__DIR__ . "/../services/ArticleService.php");
-require(__DIR__ . "/../services/ResponseService.php");
 
 class ArticleController{
-    
     public function getAllArticles(){
+    try{
+
         global $mysqli;
 
         if(!isset($_GET["id"])){
@@ -21,13 +20,19 @@ class ArticleController{
         $article = Article::find($mysqli, $id)->toArray();
         echo ResponseService::success_response($article);
         return;
-    }
-
-    public function deleteAllArticles(){
-        die("Deleting...");
+    } catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 }
+    public function deleteAllArticles(){
+        try{
+        
+        }catch(Exception $e){
+            echo "caught exception :",$e->getMessage();
+        }
+    }
 
+}
 //To-Do:
 
 //1- Try/Catch in controllers ONLY!!! 
