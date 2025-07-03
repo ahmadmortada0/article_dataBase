@@ -52,11 +52,20 @@ class Article extends Model{
         // $column=array_map(fn($col)=>"`$columns`",$columns);
         // $speratedcolumn=implode(",",$column);
         // $placeHolders=implode(",",array_fill(0,count($values),"?"));
-        $sql ="UPDATE  articles set name = ? , author = ?, description = ?, where id=?";
+        $sql ="UPDATE  articles set name = ? , author = ?, description = ? where id=?";
         $query=$mysqli->prepare($sql);
-        $query->bind_Param("sssi",$values,$primary_key);
+        $query->bind_param("sssi",$values,$primary_key);
         $query->excute();
-        $data = $query->get_result();
+        return $data;
+    }
+      public  function inseretArticle(mysqli $mysqli,string $name , string $author ,string $descriptioon,int $id){
+        // $column=array_map(fn($col)=>"`$columns`",$columns);
+        // $speratedcolumn=implode(",",$column);
+        // $placeHolders=implode(",",array_fill(0,count($values),"?"));
+        $sql ="INSERT INTO articles  (name,author,description),(?,?,?) ";
+        $query=$mysqli->prepare($sql);
+        $query->bind_param("sss",$name,$author,$description,$primary_key);
+        $query->excute();
         return $data;
     }
 

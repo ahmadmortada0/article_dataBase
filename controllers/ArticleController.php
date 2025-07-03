@@ -45,14 +45,15 @@ class ArticleController{
     public function updateArticle(){
         global $mysqli;
         try{
-        $id=$_POST["id"];
         $data=json_decode(file_get_contents("php://input"),true);
         $article=new Article([
             "name" => $data["name"],
             "author" =>$data["author"],
-            "description" =>$data["decription"]
+            "description" =>$data["decription"],
+            "id"=>$data["id"]
         ]);
-            $article->updateArticle($mysqli,$data,$id);
+
+            $article->updateArticle($mysqli,$article["name"],$article["author"],$article["description"],$author["id"]);
         
         echo "the article updated";
         return;
@@ -60,7 +61,22 @@ class ArticleController{
             echo "caught exception :",$e->getMessage();
         }
     }
-
+    public function insertArticle(){
+        global $mysqli ;
+        try{
+            $data=file_get_contents("PHP://input",true);
+            $article=new Article([
+                'name'=>$data["name"],
+                'author'=>$data["author"],
+                'descriiption'=>$data["description"]
+            ]);
+            $artcile->insertArticle($mysqli,$artcile["name"],$article["author"],$description["description"]);
+            echo "the new author inserted";
+            return;
+    }catch(Exception $e){
+        echo "caught exception :" ,$e->getMessage();
+    }
+    }
 }
 //To-Do:
 
