@@ -48,4 +48,16 @@ require_once("Model.php");
     public function toArray(){
         return [$this->id, $this->title,  $this->description,$this->price];
     }
+    public function updateCatogry(mysqli $mysqli ,int $id,string $title,string $description,int $price){
+        $stmt="UPDATE category SET title=? , description=? , price=?  where id=?";
+        $query=$mysqli->prepare($stmt);
+        $query->bind_param("ssii",$title,$description,$price,$id);
+        $query->execute();
+    }
+    public function insertCatogry(mysqli $mysqli,string $title,string $description,int $price){
+        $stmt="INSERT INTO category  (title,description,price) values (?,?,?)";
+        $query=$mysqli->prepare($stmt);
+        $query->bind_param("ssi",$title,$description,$price);
+        $query->execute();
+    }
   }

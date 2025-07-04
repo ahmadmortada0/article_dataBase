@@ -37,4 +37,18 @@ class CatogryController{
         echo "caption error :" , $e->getMessage(),"\n";
     }
     }
-}
+    function updateCatogry(){
+        try{
+             global $mysqli;
+             $data=json_decode(file_get_contents("php://input"),true);
+                $catgory=new Catogry([
+                    "id"=>$data["id"],
+                    "title" => $data["title"],
+                    "description" =>$data["description"],
+                    "price" =>$data["price"]
+                ]);
+            $catgory->updateCatogry($mysqli ,$data["id"],$catgory->getTitle(),$catgory->getDescription(),$catgory->getprice());
+        }catch(Exception $e){
+        echo "caption error :" , $e->getMessage(),"\n";
+    }
+}}
