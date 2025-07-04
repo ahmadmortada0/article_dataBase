@@ -1,8 +1,8 @@
 <?php
 
-class ResponseService {
+class  ResponseService {
 
-    public function success_response($payload){
+    public static function success_response($payload){
         $response = [];
         if ($payload){
         $response["status"] = 200;

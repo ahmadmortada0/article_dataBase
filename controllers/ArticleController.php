@@ -1,7 +1,8 @@
 <?php 
-require(__DIR__."BaseController.php");
+require(__DIR__."/BaseController.php");
 require(__DIR__ . "/../models/Article.php");
 require(__DIR__ . "/../services/ArticleService.php");
+// require(__DIR__ . "/../services/ResponseService.php");
 
 class ArticleController{
     public function getAllArticles(){
@@ -27,15 +28,14 @@ class ArticleController{
     public function deleteAllArticles(){
         global $mysqli;
         try{
-        if (!isset($_GET["$id"])){
+        if (!isset($_GET["id"])){
             $article=Article::deleteAllArticles($mysqli);
             echo "all articles deleted";
             return;
         }
         $id=$_GET["id"];
         $article=Article::delete($mysqli,$id);
-        echo "the article deleted";
-        return;
+        echo ($article);
         }catch(Exception $e){
             echo "caught exception :",$e->getMessage();
         }

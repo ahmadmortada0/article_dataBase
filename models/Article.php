@@ -67,7 +67,5 @@ class Article extends Model{
         $query->bind_param("sss",$name,$author,$description,$primary_key);
         $query->excute();
         return $data;
-    }
-
-    
+    }    
 }

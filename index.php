@@ -1,5 +1,5 @@
 <?php 
-require(__DIR__ ."./routes/api.php");
+require(__DIR__ ."/routes/api.php");
 // This block is used to extract the route name from the URL
 //----------------------------------------------------------
 // Define your base directory 

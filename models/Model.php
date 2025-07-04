@@ -33,16 +33,23 @@ abstract class Model{
 
         return $objects; //we are returning an array of objects!!!!!!!!
     }
-    public static function deleteAll(mysqli $mysqli){
-        $sql =sprintf("DELETE * FROM %s,static"::$table);
+    public static function deleteAllArticles(mysqli $mysqli){
+        $sql =sprintf("DELETE  FROM %s",static::$table);
         $query=$mysqli->prepare($sql);
-        $query->excute();
+        $query->execute();
     }
     public static function delete(mysqli $mysqli,int $id){
-        $sql =sprintf("DELETE * FROM %s where %s = ?",static ::$table,$primary_key);
+        $found=static::find($mysqli,$id);
+        if ($found!==null){
+        $sql =sprintf("DELETE  FROM %s where id = ?",static ::$table);
         $query=$mysqli->prepare($sql);
-        $query->bind_Param("i",$primary_key);
-        $query->excute();
+        $query->bind_Param("i",$id);
+        echo ($id);
+        $query->execute();
+            return "article deleted";
+        }
+        return "article not found";
+
     }
   
     //you have to continue with the same mindset
