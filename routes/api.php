@@ -4,6 +4,7 @@
     '/delete_articles'         => ['controller' => 'ArticleController', 'method' => 'deleteAllArticles'],
     '/update_article'          => ['controller'=>"ArticleController" , 'method' =>'updateArticle'],
     '/insert_article'          => ['controller'=>"ArticleController" , 'method' =>'insertArticle'],
+    '/articlesByCategory'          => ['controller'=>"ArticleController" , 'method' =>'articlesByCategory'],
     '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
     '/seedCatogry'      =>['controller'=>'CatogryController','method' =>'seed'],
@@ -11,4 +12,6 @@
     '/deleteCatogry'      =>['controller'=>'CatogryController','method' =>'delete'],
     '/updateCatogry'      =>['controller'=>'CatogryController','method' =>'updateCatogry'],
     '/insertCatogry'      =>['controller'=>'CatogryController','method' =>'insertCatogry'],
+    '/findcatogry'      =>['controller'=>'ArticleController','method' =>'findcatogry'],
+    '/allArticles'      =>['controller'=>'ArticleController','method' =>'allArticles'],
 ];

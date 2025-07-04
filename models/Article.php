@@ -7,6 +7,7 @@ class Article extends Model{
     private string $name; 
     private string $author; 
     private string $description; 
+    private int $catogryId; 
     
     protected static string $table = "articles";
 
@@ -15,6 +16,7 @@ class Article extends Model{
         $this->name = $data["name"];
         $this->author = $data["author"];
         $this->description = $data["description"];
+        $this->catogryId = $data["catogry"];
     }
 
     public function getId(): int  {
@@ -32,11 +34,15 @@ class Article extends Model{
     public function getDescription(): string {
         return $this->description;
     }
+    public function getCatogryId(): int  {
+        return $this->catogryId;
+    }
 
     public function setName(string $name){
         $this->name = $name;
     }
 
+    
     public function setAuthor(string $author){
         $this->author = $author;
     }
@@ -46,8 +52,50 @@ class Article extends Model{
     }
 
     public function toArray(){
-        return [$this->id, $this->name, $this->author, $this->description];
+        return [$this->id, $this->name, $this->author, $this->description,$this->catogryId];
     }
+    //////////////////////////////////
+
+
+
+public static function findcatogry(mysqli $mysqli, int $id){
+        $sql =("Select catogry_id from articles WHERE id = ?");
+        
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $id);
+        $query->execute();
+
+        $data = $query->get_result()->fetch_assoc();
+
+        return $data ;
+    }
+
+    public static function allArticles(mysqli $mysqli, int $id){
+        $sql = sprintf("Select * from articles where catogry_id=?");
+        
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $id);
+        $query->execute();
+
+        $data = $query->get_result();
+
+        $objects = [];
+        while($row = $data->fetch_assoc()){
+            $objects[] = new static($row);
+        }
+
+        return $objects; 
+    }
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////
       public  function updateArticle(mysqli $mysqli,int $id,string $name,string $author,string $description){
         // $column=array_map(fn($col)=>"`$columns`",$columns);
         // $speratedcolumn=implode(",",$column);

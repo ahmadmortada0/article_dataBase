@@ -25,6 +25,27 @@ class ArticleController{
     echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 }
+    public function allArticles(){
+    try{
+
+        global $mysqli;
+
+      
+            $articles = Article::allArticles($mysqli);
+            $articles_array = ArticleService::articlesToArray($articles); 
+            return;
+        }
+
+     catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    }
+public function findcatogry(){
+$id = $_GET["id"];
+$article = Article::findcatogry($mysqli, $id);
+echo ResponseService::success_response($article);
+// return;
+}
     public function deleteAllArticles(){
         global $mysqli;
         try{
