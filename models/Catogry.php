@@ -3,15 +3,16 @@ require_once("Model.php");
 
   class Catogry extends Model{
     private ?int $id = null;
-    private string $name;
+    private string $title;
     private string $description;
     private int $price;
 
+    protected static string $table = "category";
      public function __construct(array $data){
         if (isset($id)){
             $this->id = $data["id"];
         }
-        $this->name = $data["name"];
+        $this->title = $data["title"];
         $this->description = $data["description"];
         $this->price = $data["price"];
     }
@@ -20,8 +21,8 @@ require_once("Model.php");
         return $this->id;
     }
 
-    public function getName(): string {
-        return $this->name;
+    public function gettitle(): string {
+        return $this->title;
     }
 
     
@@ -32,8 +33,8 @@ require_once("Model.php");
     public function getPrice(): int {
         return $this->price;
     }
-    public function setName(string $name){
-        $this->name = $name;
+    public function settitle(string $title){
+        $this->title = $title;
     }
 
     
@@ -45,6 +46,6 @@ require_once("Model.php");
         $this->price = $price;
     }
     public function toArray(){
-        return [$this->id, $this->name,  $this->description,$this->price];
+        return [$this->id, $this->title,  $this->description,$this->price];
     }
   }

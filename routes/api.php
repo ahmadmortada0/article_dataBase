@@ -7,4 +7,5 @@
     '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
     '/seedCatogry'      =>['controller'=>'CatogryController','method' =>'seed'],
+    '/Catogry'      =>['controller'=>'CatogryController','method' =>'getCatogry'],
 ];

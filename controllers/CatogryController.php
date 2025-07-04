@@ -7,13 +7,13 @@ class CatogryController{
     function seed(){
             global $mysqli;
             $catogry=CatogrySeeder::seed($mysqli);}
-    function getcatogry(){
+    function getCatogry(){
         try{
            global  $mysqli;
            if(!isset($_GET["id"])){
            $catgory= Catogry::all($mysqli);
            $catgoryarray=CatogryService::catogryToArray($catgory);
-           echo ResponseService::success_response($articles_array);
+           echo ResponseService::success_response($catgoryarray);
            return;
            }
            $getten = $_GET["id"];
@@ -22,7 +22,7 @@ class CatogryController{
            return;
         }
     catch(Exception $e){
-        echo "caption error :"->e.getMessage(),"\n";
+        echo "caption error :" , $e->getMessage(),"\n";
     }}
 
 }
