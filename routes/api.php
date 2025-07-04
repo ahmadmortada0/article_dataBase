@@ -10,5 +10,5 @@
     '/Catogry'      =>['controller'=>'CatogryController','method' =>'getCatogry'],
     '/deleteCatogry'      =>['controller'=>'CatogryController','method' =>'delete'],
     '/updateCatogry'      =>['controller'=>'CatogryController','method' =>'updateCatogry'],
-    '/insertCatogry'      =>['controller'=>'CatogryController','method' =>'insert'],
+    '/insertCatogry'      =>['controller'=>'CatogryController','method' =>'insertCatogry'],
 ];

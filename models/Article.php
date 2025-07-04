@@ -3,7 +3,7 @@ require_once("Model.php");
 
 class Article extends Model{
 
-    private ?int $id=null; 
+    private int $id; 
     private string $name; 
     private string $author; 
     private string $description; 
@@ -11,9 +11,7 @@ class Article extends Model{
     protected static string $table = "articles";
 
     public function __construct(array $data){
-        if (isset($id)){
-            $this->id = $data["id"];
-        }
+        $this->id = $data["id"];
         $this->name = $data["name"];
         $this->author = $data["author"];
         $this->description = $data["description"];

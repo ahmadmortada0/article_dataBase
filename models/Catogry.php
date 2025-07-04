@@ -2,16 +2,15 @@
 require_once("Model.php");
 
   class Catogry extends Model{
-    private ?int $id = null;
+    private int $id;
     private string $title;
     private string $description;
     private int $price;
 
     protected static string $table = "category";
      public function __construct(array $data){
-        if (isset($id)){
-            $this->id = $data["id"];
-        }
+       
+        $this->id = $data["id"];
         $this->title = $data["title"];
         $this->description = $data["description"];
         $this->price = $data["price"];
