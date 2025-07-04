@@ -51,7 +51,34 @@ abstract class Model{
         return " not found";
 
     }
-  
+public static function findcatogry(mysqli $mysqli, int $id){
+        $sql =("Select category_id from articles WHERE id = ?");
+        
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $id);
+        $query->execute();
+
+        $data = $query->get_result()->fetch_assoc();
+
+        return $data ;
+    }
+/////////////////////////////////////////////////////////////////////////////////
+    // public static function allArticles(mysqli $mysqli, int $catogryId){
+    //     $sql = sprintf("Select * from articles where category_id=?");
+        
+    //     $query = $mysqli->prepare($sql);
+    //     $query->bind_param("i", $catogryId);
+    //     $query->execute();
+
+    //     $data = $query->get_result();
+
+    //     $objects = [];
+    //     while($row = $data->fetch_assoc()){
+    //         $objects[] = new static($row);
+    //     }
+        
+    //     return $objects; 
+    // }
     //you have to continue with the same mindset
     //Find a solution for sending the $mysqli everytime... 
     //Implement the following: 
