@@ -47,15 +47,12 @@ class ArticleController{
         try{
         $data=json_decode(file_get_contents("php://input"),true);
         $article=new Article([
+            "id"=>$data["id"],
             "name" => $data["name"],
             "author" =>$data["author"],
-            "description" =>$data["decription"],
-            "id"=>$data["id"]
+            "description" =>$data["description"]
         ]);
-
-            $article->updateArticle($mysqli,$article["name"],$article["author"],$article["description"],$author["id"]);
-        
-        echo "the article updated";
+            $article->updateArticle($mysqli,$data["id"],$article->getName(),$article->getAuthor(),$article->getDescription());
         return;
         }catch(Exception $e){
             echo "caught exception :",$e->getMessage();
@@ -64,14 +61,15 @@ class ArticleController{
     public function insertArticle(){
         global $mysqli ;
         try{
-            $data=file_get_contents("PHP://input",true);
+            $data=json_decode(file_get_contents("PHP://input"),true);
+            echo($data["name"]);
             $article=new Article([
                 'name'=>$data["name"],
                 'author'=>$data["author"],
-                'descriiption'=>$data["description"]
+                'description'=>$data["description"]
             ]);
-            $artcile->insertArticle($mysqli,$artcile["name"],$article["author"],$description["description"]);
-            echo "the new author inserted";
+            $article->insertArticle($mysqli,$article->getName(),$article->getAuthor(),$article->getDescription());
+            echo "the new article inserted";
             return;
     }catch(Exception $e){
         echo "caught exception :" ,$e->getMessage();

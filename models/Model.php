@@ -46,9 +46,9 @@ abstract class Model{
         $query->bind_Param("i",$id);
         echo ($id);
         $query->execute();
-            return "article deleted";
+            return " deleted";
         }
-        return "article not found";
+        return " not found";
 
     }
   

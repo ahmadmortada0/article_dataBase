@@ -3,7 +3,7 @@ require_once("Model.php");
 
 class Article extends Model{
 
-    private int $id; 
+    private ?int $id=null; 
     private string $name; 
     private string $author; 
     private string $description; 
@@ -11,13 +11,15 @@ class Article extends Model{
     protected static string $table = "articles";
 
     public function __construct(array $data){
-        $this->id = $data["id"];
+        if (isset($id)){
+            $this->id = $data["id"];
+        }
         $this->name = $data["name"];
         $this->author = $data["author"];
         $this->description = $data["description"];
     }
 
-    public function getId(): int {
+    public function getId(): int  {
         return $this->id;
     }
 
@@ -48,24 +50,29 @@ class Article extends Model{
     public function toArray(){
         return [$this->id, $this->name, $this->author, $this->description];
     }
-      public  function update(mysqli $mysqli,int $id,array $values){
+      public  function updateArticle(mysqli $mysqli,int $id,string $name,string $author,string $description){
         // $column=array_map(fn($col)=>"`$columns`",$columns);
         // $speratedcolumn=implode(",",$column);
         // $placeHolders=implode(",",array_fill(0,count($values),"?"));
-        $sql ="UPDATE  articles set name = ? , author = ?, description = ? where id=?";
-        $query=$mysqli->prepare($sql);
-        $query->bind_param("sssi",$values,$primary_key);
-        $query->excute();
-        return $data;
+        $found=static::find($mysqli,$id);
+        if($found!==null){
+            $sql ="UPDATE  articles set name = ? , author = ?, description = ? where id=?";
+            $query=$mysqli->prepare($sql);
+            $query->bind_param("sssi",$name,$author,$description,$id);
+            $query->execute();
+            echo "User updated";
+            return;
+        }
+        echo "user not found";
     }
-      public  function inseretArticle(mysqli $mysqli,string $name , string $author ,string $descriptioon,int $id){
+      public  function insertArticle(mysqli $mysqli,string $name , string $author ,string $description ){
         // $column=array_map(fn($col)=>"`$columns`",$columns);
         // $speratedcolumn=implode(",",$column);
         // $placeHolders=implode(",",array_fill(0,count($values),"?"));
-        $sql ="INSERT INTO articles  (name,author,description),(?,?,?) ";
+        $sql ="INSERT INTO articles  (name,author,description) Values (?,?,?); ";
         $query=$mysqli->prepare($sql);
-        $query->bind_param("sss",$name,$author,$description,$primary_key);
-        $query->excute();
-        return $data;
+        $query->bind_param("sss",$name,$author,$description);
+        $query->execute();
+        return "USERE Inserted";
     }    
 }
