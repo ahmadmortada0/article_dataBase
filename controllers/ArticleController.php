@@ -64,6 +64,7 @@ class ArticleController{
             $data=json_decode(file_get_contents("PHP://input"),true);
             echo($data["name"]);
             $article=new Article([
+                "id"=>0,
                 'name'=>$data["name"],
                 'author'=>$data["author"],
                 'description'=>$data["description"]
