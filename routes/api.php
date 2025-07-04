@@ -6,5 +6,5 @@
     '/insert_article'          => ['controller'=>"ArticleController" , 'method' =>'insertArticle'],
     '/login'         => ['controller' => 'AuthController', 'method' => 'login'],
     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
-
+    '/seedCatogry'      =>['controller'=>'CatogryController','method' =>'seed'],
 ];

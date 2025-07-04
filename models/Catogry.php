@@ -1,12 +1,16 @@
 <?php
+require_once("Model.php");
+
   class Catogry extends Model{
-    private int $id;
+    private ?int $id = null;
     private string $name;
     private string $description;
     private int $price;
 
      public function __construct(array $data){
-        $this->id = $data["id"];
+        if (isset($id)){
+            $this->id = $data["id"];
+        }
         $this->name = $data["name"];
         $this->description = $data["description"];
         $this->price = $data["price"];
@@ -26,7 +30,7 @@
     }
     
     public function getPrice(): int {
-        return $this->author;
+        return $this->price;
     }
     public function setName(string $name){
         $this->name = $name;
@@ -37,8 +41,8 @@
         $this->description = $description;
     }
     
-    public function setPrice(int $author){
-        $this->author = $author;
+    public function setPrice(int $price){
+        $this->price = $price;
     }
     public function toArray(){
         return [$this->id, $this->name,  $this->description,$this->price];
