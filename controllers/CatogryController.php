@@ -24,5 +24,17 @@ class CatogryController{
     catch(Exception $e){
         echo "caption error :" , $e->getMessage(),"\n";
     }}
-
+    function delete(){
+        try{
+            global $mysqli;
+            if(!isset($_GET["id"])){
+            $catgory= Catogry::deleteAllArticles($mysqli);
+            return;
+            }
+           $id= $_GET["id"];
+            $catgory= Catogry::delete($mysqli,$id);
+        } catch(Exception $e){
+        echo "caption error :" , $e->getMessage(),"\n";
+    }
+    }
 }

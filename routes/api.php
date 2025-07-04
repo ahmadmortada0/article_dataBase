@@ -8,4 +8,5 @@
     '/register'         => ['controller' => 'AuthController', 'method' => 'register'],
     '/seedCatogry'      =>['controller'=>'CatogryController','method' =>'seed'],
     '/Catogry'      =>['controller'=>'CatogryController','method' =>'getCatogry'],
+    '/deleteCatogry'      =>['controller'=>'CatogryController','method' =>'delete'],
 ];
